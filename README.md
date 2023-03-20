@@ -52,5 +52,5 @@ Note: You can always change this
 
 <p>To clone this repository, run;</p>
 ```
-git clone 'https://github.com/Omotunde2005/Breakout-Game.git'
+git clone https://github.com/Omotunde2005/Breakout-Game.git
 ```
