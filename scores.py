@@ -11,9 +11,9 @@ else:
     score = lines[0]
 
 
-class Lives(Turtle):
+class ScoreBoard(Turtle):
     def __init__(self):
-        super(Lives, self).__init__()
+        super(ScoreBoard, self).__init__()
         self.penup()
         self.goto(x=-200, y=240)
         self.pendown()
@@ -26,11 +26,13 @@ class Lives(Turtle):
                    font=("Calibri", 12, 'bold'))
 
     def clear_write(self):
+        # Clear the scoreboard and rewrite
         self.clear()
         self.write(f"Score: {self.score}\nTrials: {self.trials}\nHighest Score: {self.high_score}",
                    font=("Calibri", 12, 'bold'))
 
     def check_trials(self):
+        # Remove the heart from behind.
         self.trials = self.trials.removesuffix(self.trials[-1])
         self.clear_write()
 

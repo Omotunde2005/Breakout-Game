@@ -5,7 +5,7 @@ import random
 class Bricks:
     def __init__(self):
         self.colors = ['blue', 'yellow', 'red', 'green', 'orange']
-        self.turtles = []
+        self.bricks = []
         self.show_bricks()
 
     def show_bricks(self):
@@ -14,21 +14,28 @@ class Bricks:
         y_index = 0
         self.loop(x_values, y_values, y_index)
 
-    def loop(self, x_val, y_val, y_index):
+    def loop(self, x_values, y_values, y_index):
 
-        for n in x_val:
-            if n == x_val[-1]:
-                if y_index < len(y_val) - 1:
+        for n in x_values:
+            # Check if it is the last position in the x_values list.
+            if n == x_values[-1]:
+
+                # Check if all the positions in the y_values has been occupied
+                if y_index < len(y_values) - 1:
                     y_index += 1
-                    self.loop(x_val, y_val, y_index)
+
+                    # Run the method again if there are still vacant positions.
+                    self.loop(x_values, y_values, y_index)
+
+            # Create new bricks
             else:
                 x = n
-                y = y_val[y_index]
+                y = y_values[y_index]
                 brick = Turtle()
                 brick.penup()
                 brick.shapesize(stretch_len=3)
                 brick.color(random.choice(self.colors))
                 brick.shape("square")
                 brick.goto(x, y)
-                self.turtles.append(brick)
+                self.bricks.append(brick)
 

@@ -1,9 +1,9 @@
 import time
-from turtle import Turtle, Screen
+from turtle import Screen
 from paddle import Paddle
 from bricks import Bricks
 from ball import Ball
-from lives import Lives
+from scores import ScoreBoard
 
 screen = Screen()
 screen.title("Breakout Game")
@@ -15,7 +15,7 @@ screen.tracer(0)
 pad = Paddle()
 brick = Bricks()
 ball = Ball()
-live = Lives()
+lives = ScoreBoard()
 screen.onkey(key="Right", fun=pad.move_right)
 screen.onkey(key="Left", fun=pad.move_left)
 
@@ -25,38 +25,38 @@ while True:
     screen.update()
     ball.move()
 
-    if len(live.trials) == 0:
-        live.game_over()
+    if len(lives.trials) == 0:
+        lives.game_over()
         with open("records.txt", mode="r") as data:
             lines = data.readlines()
-        if live.score > int(lines[0]):
+        if lives.score > int(lines[0]):
 
             with open("records.txt", mode="w") as file:
-                file.write(f"{live.score}")
+                file.write(f"{lives.score}")
         break
     if ball.xcor() > 260 or ball.xcor() < -270:
         ball.bounce_x()
 
-    if ball.distance(pad) < 36:
+    if ball.distance(pad) < 30:
         ball.bounce_y()
 
     if ball.ycor() > 240:
         ball.bounce_y()
 
-    if ball.ycor() < -265:
-        live.check_trials()
+    if ball.ycor() < -260:
+        lives.check_trials()
         ball.restart()
         time.sleep(0.5)
 
-    for block in brick.turtles:
+    for block in brick.bricks:
         if ball.distance(block) < 30:
-            live.check_score()
+            lives.check_score()
             block.hideturtle()
-            brick.turtles.remove(block)
+            brick.bricks.remove(block)
             ball.bounce_y()
 
-    if len(brick.turtles) < 50:
-        ball.move_speed = 0.03
+    if len(brick.bricks) < 50:
+        ball.move_speed = 0.05
 
 
 screen.exitonclick()
