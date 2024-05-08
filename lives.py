@@ -11,9 +11,9 @@ else:
     score = lines[0]
 
 
-class ScoreBoard(Turtle):
+class Lives(Turtle):
     def __init__(self):
-        super(ScoreBoard, self).__init__()
+        super(Lives, self).__init__()
         self.penup()
         self.goto(x=-200, y=240)
         self.pendown()

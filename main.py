@@ -3,7 +3,7 @@ from turtle import Screen
 from paddle import Paddle
 from bricks import Bricks
 from ball import Ball
-from scores import ScoreBoard
+from lives import Lives
 
 screen = Screen()
 screen.title("Breakout Game")
@@ -15,7 +15,7 @@ screen.tracer(0)
 pad = Paddle()
 brick = Bricks()
 ball = Ball()
-lives = ScoreBoard()
+lives = Lives()
 screen.onkey(key="Right", fun=pad.move_right)
 screen.onkey(key="Left", fun=pad.move_left)
 
